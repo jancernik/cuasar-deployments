@@ -11,6 +11,10 @@ hosts:
     address: ${NPM_ADDRESS}
     deploy_dir: /opt/apps
 
+  - name: openwebui
+    address: ${OPENWEBUI_ADDRESS}
+    deploy_dir: /opt/apps
+
 repos:
   - name: homelab-deployments
     url: git@github.com:jancernik/homelab-deployments.git
@@ -25,7 +29,7 @@ projects:
       - cloudflare
 
   - name: pangolin
-    repo: cuasar-deployments
+    repo: homelab-deployments
     repo_subdir: pangolin
     targets:
       - pangolin
@@ -35,3 +39,9 @@ projects:
     repo_subdir: nginxproxymanager
     targets:
       - nginxproxymanager
+
+  - name: openwebui
+    repo: homelab-deployments
+    repo_subdir: openwebui
+    targets:
+      - openwebui
