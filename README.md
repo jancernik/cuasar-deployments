@@ -1,0 +1,1 @@
+Config and layout for most of the Docker services in my homelab, managed by [deeplo](https://github.com/jancernik/deeplo).
