@@ -27,6 +27,10 @@ hosts:
     address: ${IMMICH_ADDRESS}
     deploy_dir: /opt/apps
 
+  - name: ai
+    address: ${AI_ADDRESS}
+    deploy_dir: /opt/apps
+
 repos:
   - name: homelab-deployments
     url: git@github.com:jancernik/homelab-deployments.git
@@ -75,3 +79,9 @@ projects:
     repo_subdir: immich
     targets:
       - immich
+
+  - name: wyoming
+    repo: homelab-deployments
+    repo_subdir: wyoming
+    targets:
+      - ai

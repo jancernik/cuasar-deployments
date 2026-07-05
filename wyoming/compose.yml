@@ -1,0 +1,74 @@
+x-common: &common
+  restart: unless-stopped
+  runtime: nvidia
+  deploy:
+    resources:
+      reservations:
+        devices:
+          - driver: nvidia
+            capabilities: [gpu]
+
+services:
+  wyoming-openai:
+    <<: *common
+    container_name: wyoming-openai
+    image: ghcr.io/roryeckel/wyoming_openai:latest
+    ports:
+      - 10200:10200
+    environment:
+      WYOMING_URI: tcp://0.0.0.0:10200
+      WYOMING_LOG_LEVEL: INFO
+      WYOMING_LANGUAGES: en es
+      TTS_SPEED: 1.2
+      TTS_OPENAI_URL: http://kokoro-fastapi:8880/v1
+      TTS_MODELS: kokoro
+      TTS_BACKEND: KOKORO_FASTAPI
+      TTS_VOICES: af_heart af_bella em_alex ef_dora
+      #TTS_STREAMING_MODELS: kokoro
+      #TTS_STREAMING_MIN_WORDS: 6
+      #TTS_STREAMING_MAX_CHARS: 220
+    depends_on:
+      kokoro-fastapi:
+        condition: service_healthy
+
+  kokoro-fastapi:
+    <<: *common
+    container_name: kokoro-fastapi
+    image: ghcr.io/remsky/kokoro-fastapi-gpu:latest
+    ports:
+      - 8880:8880
+    environment:
+      USE_GPU: True
+      USE_ONNX: True
+      ONNX_NUM_THREADS: 12
+      ONNX_INTER_OP_THREADS: 6
+      ONNX_EXECUTION_MODE: parallel
+      ONNX_OPTIMIZATION_LEVEL: all
+      ONNX_MEMORY_PATTERN: True
+      ONNX_ARENA_EXTEND_STRATEGY: kNextPowerOfTwo
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8880/v1/test"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  wyoming-parakeet:
+    <<: *common
+    container_name: wyoming-parakeet
+    image: ghcr.io/tboby/wyoming-onnx-asr-gpu:latest
+    ports:
+      - 10300:10300
+    volumes:
+      - /srv/wyoming/nemo:/data
+    command:
+      - --uri
+      - tcp://0.0.0.0:10300
+      - --model-en
+      - nemo-parakeet-tdt-0.6b-v2
+      - --model-multilingual
+      - nemo-parakeet-tdt-0.6b-v3
+      - --model-dir
+      - /data
+      - --device
+      - gpu
