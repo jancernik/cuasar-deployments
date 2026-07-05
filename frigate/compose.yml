@@ -1,0 +1,38 @@
+services:
+  frigate:
+    container_name: frigate
+    image: ghcr.io/blakeblackshear/frigate:stable
+    restart: unless-stopped
+    ports:
+      - 8971:8971
+      - 8554:8554
+      - 8555:8555/tcp
+      - 8555:8555/udp
+    environment:
+      FRIGATE_RTSP_PASSWORD: ${FRIGATE_RTSP_PASSWORD?}
+      FRIGATE_JWT_SECRET: ${FRIGATE_JWT_SECRET?}
+
+      FRIGATE_CAMERA_1_ADDRESS: ${FRIGATE_CAMERA_1_ADDRESS?}
+      FRIGATE_CAMERA_1_USER: ${FRIGATE_CAMERA_1_USER?}
+      FRIGATE_CAMERA_1_PASSWORD: ${FRIGATE_CAMERA_1_PASSWORD?}
+
+      FRIGATE_CAMERA_2_ADDRESS: ${FRIGATE_CAMERA_2_ADDRESS?}
+      FRIGATE_CAMERA_2_USER: ${FRIGATE_CAMERA_2_USER?}
+      FRIGATE_CAMERA_2_PASSWORD: ${FRIGATE_CAMERA_2_PASSWORD?}
+
+      FRIGATE_MQTT_HOST: ${FRIGATE_MQTT_HOST?}
+      FRIGATE_MQTT_USER: ${FRIGATE_MQTT_USER?}
+      FRIGATE_MQTT_PASSWORD: ${FRIGATE_MQTT_PASSWORD?}
+    volumes:
+      - ./config.yml:/config/config.yml
+      - /srv/frigate/database:/frigate
+      - /mnt/media/frigate/clips:/media/frigate/clips
+      - /mnt/media/frigate/recordings:/media/frigate/recordings
+      - /etc/localtime:/etc/localtime:ro
+      - type: tmpfs
+        target: /tmp/cache
+        tmpfs:
+          size: 2000000000
+    devices:
+      - /dev/bus/usb:/dev/bus/usb
+    shm_size: 256mb

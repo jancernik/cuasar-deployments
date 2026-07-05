@@ -27,6 +27,10 @@ hosts:
     address: ${AI_ADDRESS}
     deploy_dir: /opt/apps
 
+  - name: frigate
+    address: ${FRIGATE_ADDRESS}
+    deploy_dir: /opt/apps
+
 repos:
   - name: homelab-deployments
     url: git@github.com:jancernik/homelab-deployments.git
@@ -81,3 +85,11 @@ projects:
     repo_subdir: wyoming
     targets:
       - ai
+
+  - name: frigate
+    repo: homelab-deployments
+    repo_subdir: frigate
+    targets:
+      - frigate
+    extra_files:
+      - config.yml
