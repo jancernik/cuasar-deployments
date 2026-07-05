@@ -11,10 +11,6 @@ hosts:
     address: ${NPM_ADDRESS}
     deploy_dir: /opt/apps
 
-  - name: openwebui
-    address: ${OPENWEBUI_ADDRESS}
-    deploy_dir: /opt/apps
-
   - name: atuin
     address: ${ATUIN_ADDRESS}
     deploy_dir: /opt/apps
@@ -60,7 +56,7 @@ projects:
     repo: homelab-deployments
     repo_subdir: openwebui
     targets:
-      - openwebui
+      - ai
 
   - name: atuin
     repo: homelab-deployments
