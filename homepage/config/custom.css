@@ -1,0 +1,110 @@
+*::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+#layout-groups {
+  padding: calc(var(--spacing) * 6) !important;
+  margin: 0;
+}
+
+#footer,
+#information-widgets {
+  display: none;
+}
+
+body {
+  zoom: 1.1;
+}
+
+#__next,
+body,
+html {
+  background-color: #0d1016 !important;
+}
+
+.service-block {
+  background-color: color-mix(in oklab, var(--color-white) 4%, transparent);
+}
+
+.service-block .font-thin {
+  font-weight: 300;
+}
+
+.service-site-monitor:has(.bg-emerald-500) {
+  display: none;
+}
+
+.bookmark-description {
+  opacity: 0.5;
+}
+
+.service[data-name="TrueNAS"] .absolute.rounded-md.z-0 {
+  background-color: color-mix(in oklab, var(--color-white) 4%, transparent);
+  border-radius: 4px;
+}
+
+.service[data-name="TrueNAS"] .relative.text-xs.rounded-md {
+  background-color: transparent;
+  border-radius: 4px;
+}
+
+@media (min-width: 768px) {
+  #layout-groups > .bookmark-group:nth-child(1) {
+    flex-basis: 40%;
+  }
+  #layout-groups > .bookmark-group:nth-child(2) {
+    flex-basis: 60%;
+  }
+}
+
+@media (max-width: 1279px) {
+  .bookmark-group ul {
+    grid-template-columns: 1fr;
+  }
+}
+
+:root {
+  --pair-gap: 0.5rem;
+  --pair-col: calc(50% - var(--pair-gap) / 2);
+}
+
+.services-list:has(> [data-name="Jellyfin"]),
+.services-list:has(> [data-name="Radarr"]),
+.services-list:has(> [data-name="Syncthing"]) {
+  flex-flow: row wrap;
+  column-gap: var(--pair-gap);
+}
+
+.services-list:has(> [data-name="Jellyfin"]) > .service,
+.services-list:has(> [data-name="Radarr"]) > .service,
+.services-list:has(> [data-name="Syncthing"]) > [data-name="Home Assistant"],
+.services-list:has(> [data-name="Syncthing"]) > [data-name="Frigate"],
+.services-list:has(> [data-name="Syncthing"]) > [data-name="Syncthing"],
+.services-list:has(> [data-name="Syncthing"]) > [data-name="Syncthing Tom"] {
+  flex: 1 1 var(--pair-col);
+}
+
+.services-list:has(> [data-name="Syncthing"]) > [data-name="TrueNAS"] {
+  flex: 0 0 100%;
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  :root {
+    --pair-col: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  #layout-groups > .services-group:has([data-name="Proxmox"]),
+  #layout-groups > .services-group:has([data-name="Pi-hole 1"]),
+  #layout-groups > .services-group:has([data-name="Lidarr"]),
+  #layout-groups > .services-group:has([data-name="Jenkins"]) {
+    flex-basis: 50%;
+    min-width: 0;
+  }
+}

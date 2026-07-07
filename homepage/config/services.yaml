@@ -1,0 +1,265 @@
+- Infra:
+    - Proxmox:
+        icon: /icons/proxmox.png
+        href: {{HOMEPAGE_VAR_PROXMOX_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_PROXMOX_ADDRESS}}
+        description: PVE1
+        widget:
+          type: proxmox
+          url: {{HOMEPAGE_VAR_PROXMOX_ADDRESS}}
+          username: {{HOMEPAGE_VAR_PROXMOX_USERNAME}}
+          password: {{HOMEPAGE_VAR_PROXMOX_PASSWORD}}
+          node: proxmox
+          fields: ["resources.cpu", "resources.mem"]
+    - Edge:
+        icon: /icons/proxmox.png
+        href: {{HOMEPAGE_VAR_EDGE_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_EDGE_ADDRESS}}
+        description: PVE2
+        widget:
+          type: proxmox
+          url: {{HOMEPAGE_VAR_EDGE_ADDRESS}}
+          username: {{HOMEPAGE_VAR_EDGE_USERNAME}}
+          password: {{HOMEPAGE_VAR_EDGE_PASSWORD}}
+          node: edge
+          fields: ["resources.cpu", "resources.mem"]
+    - Router:
+        icon: /icons/asus.png
+        href: {{HOMEPAGE_VAR_ROUTER_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_ROUTER_ADDRESS}}
+        description: Asus
+    - NPM:
+        icon: /icons/nginx.png
+        href: {{HOMEPAGE_VAR_NPM_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_NPM_ADDRESS}}
+        description: Nginx Proxy Manager
+    - Modem:
+        icon: /icons/telecentro.png
+        href: {{HOMEPAGE_VAR_MODEM_ADDRESS}}
+        description: Telecentro
+
+- Network:
+    - Pi-hole 1:
+        icon: /icons/pi-hole.png
+        href: {{HOMEPAGE_VAR_PIHOLE_1_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_PIHOLE_1_ADDRESS}}
+        description: Network Ad Blocker
+        widget:
+          type: pihole
+          url: {{HOMEPAGE_VAR_PIHOLE_1_ADDRESS}}
+          version: 6
+          key: {{HOMEPAGE_VAR_PIHOLE_1_KEY}}
+          fields: ["queries", "blocked"]
+    - Pi-hole 2:
+        icon: /icons/pi-hole.png
+        href: {{HOMEPAGE_VAR_PIHOLE_2_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_PIHOLE_2_ADDRESS}}
+        description: Network Ad Blocker
+        widget:
+          type: pihole
+          url: {{HOMEPAGE_VAR_PIHOLE_2_ADDRESS}}
+          version: 6
+          key: {{HOMEPAGE_VAR_PIHOLE_2_KEY}}
+          fields: ["queries", "blocked"]
+    - Pangolin:
+        icon: /icons/pangolin.png
+        href: {{HOMEPAGE_VAR_PANGOLIN_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_PANGOLIN_ADDRESS}}
+        description: Secure Remote Access
+        widget:
+          type: pangolin
+          url: {{HOMEPAGE_VAR_PANGOLIN_API_URL}}
+          key: {{HOMEPAGE_VAR_PANGOLIN_KEY}}
+          org: cuasar
+          fields: ["resources", "in", "out"]
+    - Cloudflare:
+        icon: /icons/cloudflare-zero-trust.png
+        href: https://dash.cloudflare.com/{{HOMEPAGE_VAR_CLOUDFLARE_ACCOUNT_ID}}/one/networks/connectors
+        siteMonitor: {{HOMEPAGE_VAR_CLOUDFLARE_ADDRESS}}
+        description: Secure Tunnels
+        widget:
+          type: cloudflared
+          accountid: {{HOMEPAGE_VAR_CLOUDFLARE_ACCOUNT_ID}}
+          tunnelid: {{HOMEPAGE_VAR_CLOUDFLARE_PROXMOX_TUNNEL_ID}}
+          key: {{HOMEPAGE_VAR_CLOUDFLARE_ACCOUNT_KEY}}
+
+- Media:
+    - Plex:
+        icon: /icons/plex.png
+        href: {{HOMEPAGE_VAR_PLEX_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_PLEX_ADDRESS}}
+        description: Media Server
+        widget:
+          type: plex
+          url: {{HOMEPAGE_VAR_PLEX_ADDRESS}}
+          key: {{HOMEPAGE_VAR_PLEX_KEY}}
+          fields: ["movies", "tv"]
+    - Jellyfin:
+        icon: /icons/jellyfin.png
+        href: {{HOMEPAGE_VAR_JELLYFIN_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_JELLYFIN_ADDRESS}}
+        description: Media Server
+        widget:
+          type: jellyfin
+          url: {{HOMEPAGE_VAR_JELLYFIN_ADDRESS}}
+          version: 2
+          key: {{HOMEPAGE_VAR_JELLYFIN_KEY}}
+          enableBlocks: true
+          enableNowPlaying: false
+          enableMediaControl: false
+          expandOneStreamToTwoRows: false
+          fields: ["movies", "series"]
+    - Immich:
+        icon: /icons/immich.png
+        href: {{HOMEPAGE_VAR_IMMICH_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_IMMICH_ADDRESS}}
+        description: Photo and Video Manager
+        widget:
+          type: immich
+          url: {{HOMEPAGE_VAR_IMMICH_ADDRESS}}
+          version: 2
+          key: {{HOMEPAGE_VAR_IMMICH_KEY}}
+          fields: ["videos", "photos"]
+    - Revelo:
+        icon: /icons/revelo.png
+        href: {{HOMEPAGE_VAR_REVELO_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_REVELO_ADDRESS}}
+        description: Photography Portfolio
+        widget:
+          type: cloudflared
+          accountid: {{HOMEPAGE_VAR_CLOUDFLARE_ACCOUNT_ID}}
+          tunnelid: {{HOMEPAGE_VAR_CLOUDFLARE_REVELO_TUNNEL_ID}}
+          key: {{HOMEPAGE_VAR_CLOUDFLARE_ACCOUNT_KEY}}
+    - Seerr:
+        icon: /icons/seerr.png
+        href: {{HOMEPAGE_VAR_SEERR_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_SEERR_ADDRESS}}
+        description: Media Requests
+
+- Downloads:
+    - Speedtest Tracker:
+        icon: /icons/speedtest-tracker.png
+        href: {{HOMEPAGE_VAR_SPEEDTEST_TRACKER_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_SPEEDTEST_TRACKER_ADDRESS}}
+        description: Internet Speed Monitor
+        widget:
+          type: speedtest
+          url: {{HOMEPAGE_VAR_SPEEDTEST_TRACKER_ADDRESS}}
+          version: 2
+          key: {{HOMEPAGE_VAR_SPEEDTEST_TRACKER_KEY}}
+          fields: ["download", "upload"]
+    - qui:
+        icon: /icons/qui.png
+        href: {{HOMEPAGE_VAR_QUI_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_QUI_ADDRESS}}
+        description: Torrent Web UI
+        widget:
+          type: qbittorrent
+          url: {{HOMEPAGE_VAR_QBITTORRENT_ADDRESS}}
+          username: {{HOMEPAGE_VAR_QBITTORRENT_USERNAME}}
+          password: {{HOMEPAGE_VAR_QBITTORRENT_PASSWORD}}
+          fields: ["download", "upload"]
+    - Prowlarr:
+        icon: /icons/prowlarr.png
+        href: {{HOMEPAGE_VAR_PROWLARR_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_PROWLARR_ADDRESS}}
+        description: Indexer Manager
+    - Profilarr:
+        icon: /icons/profilarr.png
+        href: {{HOMEPAGE_VAR_PROFILARR_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_PROFILARR_ADDRESS}}
+        description: Custom Format Manager
+    - Radarr:
+        icon: /icons/radarr.png
+        href: {{HOMEPAGE_VAR_RADARR_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_RADARR_ADDRESS}}
+        description: Movie Manager
+    - Sonarr:
+        icon: /icons/sonarr.png
+        href: {{HOMEPAGE_VAR_SONARR_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_SONARR_ADDRESS}}
+        description: TV Show Manager
+    - Bazarr:
+        icon: /icons/bazarr.png
+        href: {{HOMEPAGE_VAR_BAZARR_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_BAZARR_ADDRESS}}
+        description: Subtitles Manager
+    - qBittorrent:
+        icon: /icons/qbittorrent.png
+        href: https://qbittorrent.cuasar.cc
+        siteMonitor: {{HOMEPAGE_VAR_QBITTORRENT_ADDRESS}}
+        description: Torrent Client
+
+- System:
+    - Home Assistant:
+        icon: /icons/home-assistant.png
+        href: {{HOMEPAGE_VAR_HOME_ASSISTANT_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_HOME_ASSISTANT_ADDRESS}}
+        description: Home Automation
+    - Frigate:
+        icon: /icons/frigate.png
+        href: {{HOMEPAGE_VAR_FRIGATE_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_FRIGATE_ADDRESS}}
+        description: Network Video Recorder
+    - TrueNAS:
+        icon: /icons/truenas.png
+        href: {{HOMEPAGE_VAR_TRUENAS_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_TRUENAS_ADDRESS}}
+        description: Network-Attached Storage
+        widget:
+          type: truenas
+          url: {{HOMEPAGE_VAR_TRUENAS_ADDRESS}}
+          version: 1
+          key: {{HOMEPAGE_VAR_TRUENAS_KEY}}
+          enablePools: true
+          nasType: scale
+          fields: ["uptime", "load"]
+    - Syncthing:
+        icon: /icons/syncthing.png
+        href: {{HOMEPAGE_VAR_SYNCTHING_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_SYNCTHING_ADDRESS}}
+        description: File Synchronization
+    - Syncthing Tom:
+        icon: /icons/syncthing.png
+        href: {{HOMEPAGE_VAR_SYNCTHING_TOM_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_SYNCTHING_TOM_ADDRESS}}
+        description: File Synchronization
+
+- Music:
+    - Navidrome:
+        icon: /icons/navidrome.png
+        href: {{HOMEPAGE_VAR_NAVIDROME_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_NAVIDROME_ADDRESS}}
+        description: Music Streaming Server
+    - Picard:
+        icon: /icons/musicbrainz-picard.png
+        href: {{HOMEPAGE_VAR_PICARD_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_PICARD_ADDRESS}}
+        description: Music Tagger
+    - Lidarr:
+        icon: /icons/lidarr.png
+        href: {{HOMEPAGE_VAR_LIDARR_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_LIDARR_ADDRESS}}
+        description: Music Manager
+    - Tidarr:
+        icon: /icons/tidarr.png
+        href: {{HOMEPAGE_VAR_TIDARR_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_TIDARR_ADDRESS}}
+        description: Tidal Downloader
+
+- Tools:
+    - Fintrack:
+        icon: /icons/fintrack.png
+        href: {{HOMEPAGE_VAR_FINTRACK_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_FINTRACK_ADDRESS}}
+        description: Finance Manager
+    - Open WebUI:
+        icon: /icons/open-webui.png
+        href: {{HOMEPAGE_VAR_OPENWEBUI_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_OPENWEBUI_ADDRESS}}
+        description: AI Interface
+    - Jenkins:
+        icon: /icons/jenkins.png
+        href: {{HOMEPAGE_VAR_JENKINS_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_JENKINS_ADDRESS}}
+        description: Automation Server

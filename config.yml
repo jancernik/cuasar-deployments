@@ -39,6 +39,10 @@ hosts:
     address: ${JENKINS_ADDRESS}
     deploy_dir: /opt/apps
 
+  - name: homepage
+    address: ${HOMEPAGE_ADDRESS}
+    deploy_dir: /opt/apps
+
 repos:
   - name: homelab-deployments
     url: git@github.com:jancernik/homelab-deployments.git
@@ -113,3 +117,16 @@ projects:
     repo_subdir: jenkins
     targets:
       - jenkins
+
+  - name: homepage
+    repo: homelab-deployments
+    repo_subdir: homepage
+    targets:
+      - homepage
+    extra_files:
+      - sync-icons.sh
+      - config
+      - icons
+    persist_files:
+      - config/logs
+      - .env

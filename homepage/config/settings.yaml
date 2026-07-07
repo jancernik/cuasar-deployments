@@ -1,0 +1,38 @@
+title: Dashboard
+
+theme: dark
+color: gray
+headerStyle: clean
+statusStyle: dot
+
+target: _self
+hideErrors: true
+hideVersion: true
+disableUpdateCheck: true
+disableIndexing: true
+
+layout:
+  Domains:
+    style: row
+    columns: 2
+  Cloud:
+    style: row
+    columns: 3
+
+  Infra:
+    style: row
+    columns: 2
+  Network:
+    style: row
+    columns: 2
+
+  Media:
+  Downloads:
+  System:
+
+  Music:
+    style: row
+    columns: 2
+  Tools:
+    style: row
+    columns: 2

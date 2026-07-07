@@ -1,0 +1,33 @@
+- Domains:
+    - cuasar.cc:
+        - href: https://dash.cloudflare.com/{{HOMEPAGE_VAR_CLOUDFLARE_ACCOUNT_ID}}/cuasar.cc/dns/records
+          icon: /icons/cloudflare.png
+    - revelo.app:
+        - href: https://dash.cloudflare.com/{{HOMEPAGE_VAR_CLOUDFLARE_ACCOUNT_ID}}/revelo.app/dns/records
+          icon: /icons/cloudflare.png
+    - jancernik.com:
+        - href: https://app.netlify.com/teams/jancernik/dns/jancernik.com
+          icon: /icons/netlify.png
+    - deeplo.xyz:
+        - href: https://app.netlify.com/teams/jancernik/dns/deeplo.xyz
+          icon: /icons/netlify.png
+
+- Cloud:
+    - GitHub:
+        - href: https://github.com/jancernik
+          icon: /icons/github-light.png
+    - Vercel:
+        - href: https://vercel.com/{{HOMEPAGE_VAR_VERCEL_TEAM}}
+          icon: /icons/vercel.png
+    - Netlify:
+        - href: https://app.netlify.com/teams/{{HOMEPAGE_VAR_NETLIFY_TEAM}}/projects
+          icon: /icons/netlify.png
+    - Neon:
+        - href: https://console.neon.tech/app/{{HOMEPAGE_VAR_NEON_ORF_ID_TEAM}}/projects
+          icon: /icons/neon-tech.png
+    - Brevo:
+        - href: https://app.brevo.com/senders/list
+          icon: /icons/brevo.png
+    - RackNerd:
+        - href: https://nerdvm.racknerd.com/home.php
+          icon: /icons/racknerd.png
