@@ -45,12 +45,18 @@ html {
 
 .service[data-name="TrueNAS"] .absolute.rounded-md.z-0 {
   background-color: color-mix(in oklab, var(--color-white) 4%, transparent);
-  border-radius: 4px;
+  border-radius: 0.25rem;
 }
 
 .service[data-name="TrueNAS"] .relative.text-xs.rounded-md {
   background-color: transparent;
-  border-radius: 4px;
+  border-radius: 0.25rem;
+  margin-bottom: 0.25rem;
+  padding: 0.25rem;
+}
+
+.service[data-name="TrueNAS"] .relative.text-xs.rounded-md:not(:last-child) {
+  margin-bottom: 0.5rem;
 }
 
 @media (min-width: 768px) {
